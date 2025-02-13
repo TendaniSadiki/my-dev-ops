@@ -35,8 +35,8 @@ jobs:
 
       - name: Deploy to Firebase (master)
         if: github.ref == 'refs/heads/master'
-        run: firebase deploy --only hosting --project my-dev-ops-app
+        run: firebase deploy --only hosting:master
 
       - name: Deploy to Firebase (dev)
         if: github.ref == 'refs/heads/dev'
-        run: firebase deploy --only hosting --project my-dev-ops-app
+        run: firebase deploy --only hosting:dev
