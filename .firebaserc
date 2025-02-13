@@ -1,5 +1,17 @@
 {
   "projects": {
     "default": "my-dev-ops-app"
+  },
+  "targets": {
+    "my-dev-ops-app": {
+      "hosting": {
+        "master": [
+          "my-dev-ops-app"
+        ],
+        "dev": [
+          "my-dev-ops-app-dev"
+        ]
+      }
+    }
   }
 }
