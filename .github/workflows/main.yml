@@ -3,8 +3,9 @@ name: Devops
 on:
   push:
     branches:
-      - master  # Change this if your main branch has a different name
-        
+      - master
+      - dev
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -32,5 +33,10 @@ jobs:
           echo '${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}' > $HOME/firebase-key.json
           echo "GOOGLE_APPLICATION_CREDENTIALS=$HOME/firebase-key.json" >> $GITHUB_ENV
 
-      - name: Deploy to Firebase
-        run: firebase deploy --only hosting --project my-dev-ops-app
+      - name: Deploy to Firebase (master)
+        if: github.ref == 'refs/heads/master'
+        run: firebase deploy --only hosting:master
+
+      - name: Deploy to Firebase (dev)
+        if: github.ref == 'refs/heads/dev'
+        run: firebase deploy --only hosting:dev
