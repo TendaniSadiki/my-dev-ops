@@ -3,8 +3,7 @@ name: Devops
 on:
   push:
     branches:
-      - master
-      - dev
+      - master  # Change this if your main branch has a different name
 
 jobs:
   deploy:
@@ -16,6 +15,7 @@ jobs:
 
       - name: Setup Node.js
         uses: actions/setup-node@v3
+        with:
           node-version: 20
 
       - name: Install dependencies
